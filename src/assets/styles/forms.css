@@ -1,0 +1,58 @@
+.addCardWrap .addCardBtn {
+  width: 30px;
+  height: 30px;
+  margin: 5px 0;
+  align-self: center;
+  background-color: #cfe4f0;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  color: #456ae4;
+}
+.cardForm {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 6px 10px;
+  border-radius: 10px;
+}
+.cardForm .formTitleWrap {
+  display: flex;
+  flex-direction: column;
+}
+.cardForm .formTitleWrap .editBtn {
+  align-self: flex-end;
+}
+.cardForm .formTitleWrap .titleInput {
+  margin-top: 2px;
+}
+.cardForm .titleInput {
+  width: 95%;
+  font-size: 18px;
+  font-weight: bold;
+  border: solid 1px grey;
+}
+.cardForm .checkboxWrap {
+  padding: 2px 0;
+}
+.cardForm .checkboxWrap p {
+  margin: 0 0 2px;
+}
+.cardForm .textInput {
+  margin: 5px 0;
+  height: 25px;
+  font-size: 18px;
+  border: solid 1px #a5a3a3;
+}
+.cardForm .textInput .checkbox {
+  margin-right: 5px;
+}
+.cardForm .formBtn {
+  align-self: center;
+  margin-top: 5px;
+}
+.cardForm .newCardBtn {
+  width: 120px;
+  border: solid 1px #3056d1;
+  border-radius: 5px;
+}

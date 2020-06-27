@@ -1,120 +1,73 @@
-import React, {useState} from 'react';
-import {ListContainer} from './components/list/ListContainer.js';
+import React from 'react';
+import { AllListsWrapper } from './components/all-lists-wrapper/AllListsWrapper';
+import { Error } from './components/errors/Error';
+import { Spinner } from './components/spinner/Spinner';
+import { DataService } from './services/data-service';
 
-function App() {
-  const getBacklogList = [{title: 'title', description: 'dest', status: 'status', label: 'log', id: 1}];
-  const getSelectedList = [{title: 'title', description: 'dest', status: 'status', label: 'sel', id: 1}];
-  const getRunningList = [{title: 'title', description: 'dest', status: 'status', label: 'run', id: 1}];
-  const getEvaluatingList = [{title: 'title', description: 'dest', status: 'status', label: 'ev', id: 1}];
-  const getLiveList = [{title: 'title', description: 'dest', status: 'status', label: 'live', id: 1}];
-
-  const allTaskLists = {
-    Backlog: getBacklogList,
-    Selected: getSelectedList,
-    Running: getRunningList,
-    Evaluating: getEvaluatingList,
-    Live: getLiveList
-  }
- 
-  let [lists, setAllLists] = useState(allTaskLists);
-
-  let [currentTask, setCurrentTask] = useState({
-    task: {id: 0, title: '', description: '', label: '', status: ''}, 
-    type: ''
-  });
-
-  const setList = (listName) => {
-    const list = lists[listName];
-    setAllLists({...lists, [listName]: [...list, currentTask]});
-  }
-
-  const moveCard = nextListName => {
-    const {task, type: prevListName} = currentTask;
-
-    if(prevListName === nextListName) {
-      return lists;
+class App extends React.Component {
+  constructor() {
+    super();
+    this.dataService = new DataService();
+    this.state = {
+      taskLists: null, 
+      loading: true, 
+      error: false
     }
+  }  
 
-    let prevList = lists[prevListName];
-    const nextList = lists[nextListName];
+  componentDidMount() {
+    this.getData();
+  }
 
-    prevList = prevList.filter(({id}) => id !== currentTask.task.id);
+  componentDidCatch() {
+    this.onError();
+  }
 
-    return {
-      ...lists,
-      [prevListName]: prevList,
-      [nextListName]: [
-        ...nextList, 
-        {
-          ...task, 
-          status: nextListName.toLowerCase(),
-          id: calcId(nextList)
+  getData = async () => {
+    if(this.state.taskLists === null) {
+      this.dataService.getData()
+      .then(result => {
+
+        if(result.Backlog) {
+          this.setState({taskLists: result, loading: false});
+
+        }else {
+          this.onError();
         }
-      ]
-    };
+      })
+      .catch(this.onError);
+    }
   }
 
-  const calcId = list => {
-    let allId = [];
-
-    if(list.length === 0) {
-      return 1;
-    }
-
-    for(let card of list) {
-      allId.push(card.id);
-    }
-    const biggestId = Math.max(...allId);
-    return biggestId + 1;
+  onError = () => {
+    this.setState({error: true, loading: false});
   }
-  
-  return (
-    <div className = "App">
-    <button onClick = {() => console.log(lists)}>push</button>
-      <div className = 'listsWrapper'>
-        <ListContainer 
-          list = {lists.Backlog} 
-          setList = {setList} 
-          moveCard = {nextListName => setAllLists(moveCard(nextListName))}
-          header = 'Backlog' 
-          setCurrentTask = {setCurrentTask}
-        />
-        <ListContainer
-          list = {lists.Selected} 
-          setList = {setList} 
-          moveCard = {nextListName => setAllLists(moveCard(nextListName))}
-          header = 'Selected'
-          setCurrentTask = {setCurrentTask} 
-        />
-        <ListContainer
-          list = {lists.Running} 
-          setList = {setList} 
-          moveCard = {nextListName => setAllLists(moveCard(nextListName))}
-          header = 'Running'
-          setCurrentTask = {setCurrentTask} 
-        />
-        <ListContainer 
-          header = 'Evaluating'
-          list = {lists.Evaluating} 
-          setList = {setList} 
-          moveCard = {nextListName => setAllLists(moveCard(nextListName))}
-          setCurrentTask = {setCurrentTask} 
-        />
-        <ListContainer 
-          header = 'Live'
-          list = {lists.Live} 
-          setList = {setList} 
-          moveCard = {nextListName => setAllLists(moveCard(nextListName))}
-          setCurrentTask = {setCurrentTask} 
-        />
+
+  setTaskLists = data => {
+    this.setState({taskLists: data});
+    this.dataService.updateData(data)
+  }
+
+  render() {
+
+    const { taskLists, loading, error } = this.state;
+
+    const spinner = loading ? <Spinner /> : null;
+    const errorComponent = error ? <Error /> : null;
+    const listWrapper = 
+        !loading && !error 
+      ? <AllListsWrapper taskLists = {taskLists} setTaskLists = {this.setTaskLists} />
+      : null;
+
+    return (
+      <div className = 'app'>
+        {errorComponent}
+        {spinner}
+        {listWrapper}
       </div>
-    </div>
-  );
+
+    )
+  }
 }
 
 export default App;
-
-/*
-        <ListContainer list = {runningList} setList = {setRunningList} header = 'Running' />
-        <ListContainer list = {evaluatingList} setList = {setEvaluatingList} header = 'Evaluating' />
-        <ListContainer list = {liveList} setList = {setLiveList} header = 'Live' />*/

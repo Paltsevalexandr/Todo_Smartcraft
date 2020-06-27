@@ -2,10 +2,105 @@
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   outline: none;
+}
+button:hover {
+   cursor: pointer;
 }
 h2 {
    color: whitesmoke;
 }
+li {
+   list-style: none;
+}
+input, textarea {
+   border-radius: 2px;
+}
+textarea {
+   max-width: 250px;
+}
 .listsWrapper {
    display: flex;
+   height: 100%;
+   .listContainer {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      padding: 10px;
+
+      .singleCard {
+         display: flex;
+         flex-direction: column;
+         margin: 5px;
+         background-color: whitesmoke;
+         border-radius: 10px;
+         .cardTitleWrap {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            .cardTitle {
+               padding-top: 5px;
+               font-size: 18px;
+            }
+            .editBtn {
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               width: 30px;
+               height: 20px;
+            }
+         }
+         hr {
+            height: 1px;
+            background-color: rgb(163, 162, 162);
+         }
+         .cardDetails {
+            padding: 10px;
+            .labelsWrap {
+               display: flex;
+               flex-wrap: wrap;
+               .label {
+                  margin: 0 2px 2px 0;
+                  padding: 2px;
+                  font-size: 14px;
+                  &:last-child {
+                     margin-right: 0;
+                  }
+               }
+               .design {
+                  background-color: rgb(89, 221, 89);
+               }
+               .marketing {
+                  background-color: rgb(199, 56, 199);
+               }
+               .research {
+                  background-color: rgb(216, 105, 105);
+               }
+            }
+         } 
+      }
+   }
+   .Backlog {
+      background-color: rgb(139, 139, 139);
+   }
+   .Selected {
+      background-color: rgb(168, 168, 7);
+   }
+   .Running {
+      background-color: rgb(195, 72, 72);
+   }
+   .Evaluating {
+      background-color: rgb(120, 168, 231);
+   }
+   .Live {
+      background-color: rgb(128, 202, 17);
+   }
+}
+.formBtn {
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   border: none;
+   font-size: 18px;
+   color: rgb(56, 116, 196);
 }

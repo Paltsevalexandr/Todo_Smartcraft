@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './assets/styles/single-card.css';
 import './assets/styles/list-container.css';
+import './assets/styles/new-card-form.css';
+import './assets/styles/forms.css';
 
 import App from './App.js';
 
