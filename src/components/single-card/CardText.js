@@ -1,8 +1,14 @@
 import React from 'react';
 
-export const CardText = ({card, setCurrentTask, setShowCard, removeCard, listName}) => {
+export const CardText = ({
+   card, 
+   setCurrentTask, 
+   setShowCard, 
+   removeCard, 
+   listName
+}) => {
 
-   const {title, description, labels, status, id} = card;
+   const { title, description, labels, id } = card;
 
    const addLabels = () => {
       if(labels) {
@@ -16,6 +22,7 @@ export const CardText = ({card, setCurrentTask, setShowCard, removeCard, listNam
       }
       return null;
    }
+
    return (
       <li className = 'singleCard' draggable = 'true' 
          onDragStart = {
@@ -23,24 +30,37 @@ export const CardText = ({card, setCurrentTask, setShowCard, removeCard, listNam
                setCurrentTask({task: card, type: listName});
          }}>
          <div className = 'cardTitleWrap'>
-            <button onClick = {() => removeCard(listName, id)}>remove</button>
             <h3 className = 'cardTitle'>
-               {title}
+                  {title}
             </h3>
-            <button className = 'editBtn' onClick = {() => setShowCard(false)}>
-                     edit
+            <div className = 'cardBtnsWrap'>
+               <button 
+                  className = 'cardBtn editBtn' 
+                  onClick = {() => setShowCard(false)}
+                  title = 'edit card'>
                </button>
+               <button 
+                  className = 'cardBtn removeBtn' 
+                  onClick = {() => removeCard(listName, id)}
+                  title = 'remove card'>
+               </button>
+            </div>
          </div>
          <hr />
          <div className = 'cardDetails'>
             <span className = 'labelsWrap'>
                {addLabels()}
             </span>
-            <p className = 'description'>
-               {description}
-            </p>
-            <span className = 'status'>
-               status: {status ? status : listName.toLowerCase()}
+            <div className = 'description'>
+               {
+                  description.split('\n')
+                  .map((item, i) => {
+                     return <p key = {i}>{item}</p>}
+                  )
+               }
+            </div>
+            <span className = {`status ${listName.toLowerCase()}`}>
+               status: {listName.toLowerCase()}
             </span>
          </div>
       </li>

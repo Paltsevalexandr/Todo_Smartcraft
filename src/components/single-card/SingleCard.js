@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import { CardText } from './CardText';
 import { CardForm } from './CardForm';
 
-export const SingleCard = ({card, listName, setCurrentTask, editCard, removeCard}) => {
+import './single-card.css';
+import './forms.css';
+
+export const SingleCard = ({
+   card, 
+   listName, 
+   setCurrentTask, 
+   editCard, 
+   removeCard
+}) => {
    
    let [showCard, setShowCard] = useState(true);
 

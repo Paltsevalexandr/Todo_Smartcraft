@@ -1,18 +1,39 @@
 import React, { useState } from 'react';
-import { ListContainer } from '../list-container/ListContainer.js';
-import { SingleCard } from '../single-card/SingleCard';
+import { HomePage, SearchPage } from '../pages';
+import { SearchForm } from '../search/SearchForm';
 
 export const AllListsWrapper = ({taskLists, setTaskLists}) => {  
 
   let [currentTask, setCurrentTask] = useState({
-    task: {id: 0, title: '', description: '', labels: '', status: ''}, 
+    task: {id: 0, title: '', description: '', labels: ''}, 
     type: ''
   });
+  let [searchResults, setSearchResults] = useState({});
+  let [showHomePage, setShowHomePage] = useState(true);
+
+  const addCard = (listName, newCard) => {
+    const list = taskLists[listName];
+    setTaskLists({...taskLists, [listName]: [...list, newCard]});
+
+    if(searchResults[listName]) {
+      const searchList = searchResults[listName];
+      setSearchResults({...searchResults, [listName]: [...searchList, newCard]});
+    }
+  }
+
+  const removeCard = (listName, cardId) => {
+    const list = taskLists[listName].filter(({id}) => {console.log('id: ', id, ' cardId: ', cardId);return id !== cardId});
+    setTaskLists({...taskLists, [listName]: list});
+
+    if(searchResults[listName]) {
+      const searchList = searchResults[listName].filter(({id}) => id !== cardId);
+      setSearchResults({...searchResults, [listName]: searchList});
+    }
+  }
 
   const editCard = (listName, {id: cardId, ...card}) => {
-    let list = taskLists[listName];
 
-    list = list.map(item => {
+    let list = taskLists[listName].map(item => {
       const { id } = item;
       
       if(id === cardId) {
@@ -22,42 +43,56 @@ export const AllListsWrapper = ({taskLists, setTaskLists}) => {
       return item;
     });
     setTaskLists({...taskLists, [listName]: list});
-  }
 
-  const addCard = (listName, newCard) => {
-    const list = taskLists[listName];
-    setTaskLists({...taskLists, [listName]: [...list, newCard]});
-  }
-
-  const removeCard = (listName, cardId) => {
-    const list = taskLists[listName].filter(({id}) => id !== cardId);
-    setTaskLists({...taskLists, [listName]: list});
+    if(searchResults[listName]) {
+      let searchList = searchResults[listName].map(item => {
+        const { id } = item;
+        
+        if(id === cardId) {
+          item = {...card, id};
+        }
+  
+        return item;
+      });
+      setSearchResults({...searchResults, [listName]: searchList});
+    }
   }
 
   const moveCard = nextListName => {
     const {task, type: prevListName} = currentTask;
 
-    if(prevListName === nextListName) {
-      return taskLists;
+    if(prevListName !== nextListName) {
+
+      let prevList = taskLists[prevListName].filter(({id}) => id !== currentTask.task.id);
+      const nextList = taskLists[nextListName];
+      const updatedTask = {
+        ...task, 
+        id: calcId(nextList)
+      };
+
+      setTaskLists({
+        ...taskLists,
+        [prevListName]: prevList,
+        [nextListName]: [
+          ...nextList, 
+          updatedTask
+        ]
+      });
+
+      if(searchResults[prevListName] && searchResults[nextListName]) {
+        let searchPrevList = searchResults[prevListName].filter(({id}) => id !== currentTask.task.id);
+        const searchNextList = searchResults[nextListName];
+
+        setSearchResults({
+          ...searchResults,
+          [prevListName]: searchPrevList,
+          [nextListName]: [
+            ...searchNextList, 
+            updatedTask
+          ]
+        });
+      }
     }
-
-    let prevList = taskLists[prevListName];
-    const nextList = taskLists[nextListName];
-
-    prevList = prevList.filter(({id}) => id !== currentTask.task.id);
-
-    setTaskLists({
-      ...taskLists,
-      [prevListName]: prevList,
-      [nextListName]: [
-        ...nextList, 
-        {
-          ...task, 
-          status: nextListName.toLowerCase(),
-          id: calcId(nextList)
-        }
-      ]
-    });
   }
 
   const calcId = list => {
@@ -74,35 +109,32 @@ export const AllListsWrapper = ({taskLists, setTaskLists}) => {
     return biggestId + 1;
   }
 
-  const listsKeys = Object.keys(taskLists);
-
   return (
-    <div className = 'listsWrapper'>
+    <>
+      <SearchForm 
+        taskLists = {taskLists} 
+        showHomePage = {showHomePage}
+        setSearchResults = {setSearchResults}
+        setShowHomePage = {setShowHomePage} />
       {
-        listsKeys.map((listName, index) => {
-          return (
-            <ListContainer 
-              list = {taskLists[listName]} 
-              addCard = {addCard} 
-              moveCard = {moveCard}
-              header = {listName} 
-              key = {index} >
-              {
-                taskLists[listName].map((card, index) => {
-                  return (
-                    <SingleCard key = {index}
-                        card = {card}
-                        listName = {listName}
-                        setCurrentTask = {setCurrentTask}
-                        editCard = {editCard}
-                        removeCard = {removeCard} />
-                  )
-                })
-              }
-            </ListContainer>
-          )
-        })
+          showHomePage
+        ? <HomePage
+            taskLists = {taskLists}
+            addCard = {addCard}
+            removeCard = {removeCard} 
+            editCard = {editCard} 
+            moveCard = {moveCard} 
+            setCurrentTask = {setCurrentTask}
+          />
+        : <SearchPage
+            taskLists = {searchResults}
+            addCard = {addCard}
+            removeCard = {removeCard} 
+            editCard = {editCard} 
+            moveCard = {moveCard} 
+            setCurrentTask = {setCurrentTask}
+          />
       }
-    </div>
+    </>
   );
 }

@@ -20,6 +20,18 @@ textarea {
 textarea {
   max-width: 250px;
 }
+button {
+  border: none;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+}
+.searchWrap {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
 .listsWrapper {
   display: flex;
   height: 100%;
@@ -29,57 +41,6 @@ textarea {
   flex-direction: column;
   width: 20%;
   padding: 10px;
-}
-.listsWrapper .listContainer .singleCard {
-  display: flex;
-  flex-direction: column;
-  margin: 5px;
-  background-color: whitesmoke;
-  border-radius: 10px;
-}
-.listsWrapper .listContainer .singleCard .cardTitleWrap {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-}
-.listsWrapper .listContainer .singleCard .cardTitleWrap .cardTitle {
-  padding-top: 5px;
-  font-size: 18px;
-}
-.listsWrapper .listContainer .singleCard .cardTitleWrap .editBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 20px;
-}
-.listsWrapper .listContainer .singleCard hr {
-  height: 1px;
-  background-color: #a3a2a2;
-}
-.listsWrapper .listContainer .singleCard .cardDetails {
-  padding: 10px;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap {
-  display: flex;
-  flex-wrap: wrap;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap .label {
-  margin: 0 2px 2px 0;
-  padding: 2px;
-  font-size: 14px;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap .label:last-child {
-  margin-right: 0;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap .design {
-  background-color: #59dd59;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap .marketing {
-  background-color: #c738c7;
-}
-.listsWrapper .listContainer .singleCard .cardDetails .labelsWrap .research {
-  background-color: #d86969;
 }
 .listsWrapper .Backlog {
   background-color: #8b8b8b;
@@ -95,12 +56,4 @@ textarea {
 }
 .listsWrapper .Live {
   background-color: #80ca11;
-}
-.formBtn {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: none;
-  font-size: 18px;
-  color: #3874c4;
 }

@@ -1,0 +1,87 @@
+.singleCard {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+.singleCard .cardTitleWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 5px;
+}
+.singleCard .cardTitleWrap .cardBtnsWrap {
+  padding: 3px 3px 0 0;
+}
+.singleCard .cardTitleWrap .cardBtnsWrap .cardBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  background-size: cover;
+}
+.singleCard .cardTitleWrap .cardBtnsWrap .editBtn {
+  margin-bottom: 3px;
+  background-image: url('../../assets/images/edit.png');
+}
+.singleCard .cardTitleWrap .cardBtnsWrap .removeBtn {
+  margin-top: 5px;
+  background-image: url('../../assets/images/remove.png');
+}
+.singleCard .cardTitleWrap .cardTitle {
+  display: flex;
+  align-self: center;
+  font-size: 18px;
+}
+.singleCard hr {
+  height: 1px;
+  background-color: #a3a2a2;
+}
+.singleCard .cardDetails {
+  padding: 10px;
+}
+.singleCard .cardDetails .labelsWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+.singleCard .cardDetails .labelsWrap .label {
+  margin: 0 2px 2px 0;
+  padding: 2px;
+  font-size: 14px;
+}
+.singleCard .cardDetails .labelsWrap .label:last-child {
+  margin-right: 0;
+}
+.singleCard .cardDetails .labelsWrap .design {
+  background-color: #59dd59;
+}
+.singleCard .cardDetails .labelsWrap .marketing {
+  background-color: #c738c7;
+}
+.singleCard .cardDetails .labelsWrap .research {
+  background-color: #d86969;
+}
+.singleCard .cardDetails .description {
+  margin-bottom: 5px;
+}
+.singleCard .cardDetails .status {
+  padding: 2px;
+  border: solid 2px;
+}
+.singleCard .cardDetails .backlog {
+  border-color: #8b8b8b;
+}
+.singleCard .cardDetails .selected {
+  border-color: #a8a807;
+}
+.singleCard .cardDetails .running {
+  border-color: #c34848;
+}
+.singleCard .cardDetails .evaluating {
+  border-color: #78a8e7;
+}
+.singleCard .cardDetails .live {
+  border-color: #80ca11;
+}

@@ -1,44 +1,63 @@
 import React, { useState } from 'react';
-import { CardCheckboxes } from './CardCheckboxes';
+import { Checkboxes } from './Checkboxes';
 
 export const CardForm = ({ setShowCard, editCard, listName, card }) => {
 
-   const {title, description, labels: prevLabels, ...cardRest} = card;
+   const { title, description, labels: prevLabels, ...cardRest } = card;
 
    let [newTitle, setTitle] = useState(title);
    let [newDescription, setDescription] = useState(description);
-   let [labels, setLabel] = useState(prevLabels);
+   let [labels, setLabels] = useState(prevLabels);
 
    const chooseLabel = e => {
-      const target = e.target;
+      const {checked, value} = e.target;
 
-      if(target.checked) {
-         setLabel([...labels, target.value]);
+      if(checked) {
+         setLabels([...labels, value]);
 
       }else {
-         setLabel(labels.filter(item => item !== target.value));
+         setLabels(labels.filter(item => item !== value));
       }
+   }
+
+   const clearForm = () => {
+      setTitle('');
+      setDescription('');
+      setLabels([]);
+   }
+
+   const handleCard = e => {
+      editCard(listName, 
+         {
+            title: newTitle, 
+            description: newDescription, 
+            labels, 
+            ...cardRest
+         });
+      setShowCard(true);
+      clearForm();
+      e.preventDefault();
    }
    
    return (
       <li className = 'singleCard'>
          <form className = 'cardForm'
-            onSubmit = {e => {
-               editCard(listName, {title: newTitle, description: newDescription, labels, ...cardRest});
-               setShowCard(true);
-               e.preventDefault();
-            }}>
-            <div className = 'formTitleWrap'>
-               <button type = 'submit' className = 'editBtn'>
-                  edit
-               </button>
+            onSubmit = {e => handleCard(e)}>
+            <div className = 'cardTitleWrap'>
+               <div className = 'cardBtnsWrap'>
+                  <button 
+                     className = 'cardBtn editBtn' 
+                     type = 'submit'
+                     title = 'edit card'>
+                  </button>
+               </div>
                <input type = 'text' required
                   className = 'titleInput'
                   value = {newTitle}
                   onChange = {e => {setTitle(e.target.value);}}
                />
             </div>
-            <CardCheckboxes
+            <Checkboxes
                chooseLabel = {chooseLabel} 
                labels = {labels} 
             />
