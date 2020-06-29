@@ -5,8 +5,8 @@ import './search.css';
 export const SearchFormContainer = ({ 
    taskLists, 
    setSearchResults, 
-   setShowHomePage, 
-   showHomePage,
+   setShowSearchResults, 
+   showSearchResults,
    setShowModalWindow
 }) => {
 
@@ -54,7 +54,7 @@ export const SearchFormContainer = ({
 
       }else if(showInput && validate(searchWords)) {
          setSearchResults(search(searchWords));
-         setShowHomePage(false); 
+         setShowSearchResults(true); 
          setShowMessage(false);
          e.preventDefault();
 
@@ -67,25 +67,25 @@ export const SearchFormContainer = ({
    return (
       <div className = 'searchWrap'>
          {
-               showHomePage
-            ?  null
-            :  <>
+               showSearchResults
+            ?  <>
                   <button 
                      className = 'clearFilterBtn' 
                      onClick = {() => {
-                        setShowHomePage(true); 
+                        setShowSearchResults(false); 
                         setShowInput(false);
                      }}>
                         Go to all cards
                   </button>
                   <h2 className = 'searchTitle'>Search results</h2>
                </>
+            :  null
          }           
          <div className = 'searchFormWrap'>
             <p className = 'infoMessage'>
                {
                   showMessage 
-                  ? 'You must type anything' 
+                  ? 'You must type at least two symbols' 
                   : ''
                }
             </p>
@@ -95,8 +95,7 @@ export const SearchFormContainer = ({
             </button>
             <SearchForm
                submitFunctions = {submitFunctions}
-               showInput = {showInput}
-             />
+               showInput = {showInput} />
          </div>
        </div>
     )

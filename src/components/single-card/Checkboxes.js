@@ -16,8 +16,8 @@ export const Checkboxes = ({ labels, chooseLabel })  => {
             <input type = 'checkbox' 
                className = 'checkbox'
                onChange = {e => chooseLabel(e)} 
-               value = 'marketing' 
-               checked = {labels.includes('marketing')}
+               value = 'Marketing' 
+               checked = {labels.includes('Marketing')}
             />
             Marketing
          </p>
@@ -25,8 +25,8 @@ export const Checkboxes = ({ labels, chooseLabel })  => {
             <input type = 'checkbox' 
                className = 'checkbox'
                onChange = {e => chooseLabel(e)} 
-               value = 'research' 
-               checked = {labels.includes('research')}
+               value = 'Research' 
+               checked = {labels.includes('Research')}
             />
             Research
          </p>

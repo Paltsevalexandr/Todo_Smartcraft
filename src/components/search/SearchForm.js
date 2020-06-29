@@ -15,7 +15,8 @@ export const SearchForm = ({ submitFunctions, showInput }) => {
             ? <input type = 'text' required
                autoFocus
                value = {searchWords} 
-               onChange = {e => setSearchWords(e.target.value)} />
+               onChange = {e => setSearchWords(e.target.value)}
+               />
             :  null
          }
       </form>

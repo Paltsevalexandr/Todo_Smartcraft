@@ -52,9 +52,10 @@ export const CardForm = ({ setShowCard, editCard, listName, card }) => {
                   </button>
                </div>
                <input type = 'text' required
+                  autoFocus
                   className = 'titleInput'
                   value = {newTitle}
-                  onChange = {e => {setTitle(e.target.value);}}
+                  onChange = {e => setTitle(e.target.value)}
                />
             </div>
             <Checkboxes

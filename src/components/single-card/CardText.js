@@ -13,8 +13,11 @@ export const CardText = ({
    const addLabels = () => {
       if(labels) {
          return labels.map((item, index) => {
+            let class_name = item;
+            class_name = item.replace('UI ', '');
+            
             return (
-               <span key = {index} className = {`label ${item}`}>
+               <span key = {index} className = {`label ${class_name}`}>
                   {item}
                </span>
             )

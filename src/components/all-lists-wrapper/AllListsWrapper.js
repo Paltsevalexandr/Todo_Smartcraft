@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { HomePage, SearchPage } from '../pages';
+import { HomePage } from '../pages';
 import { SearchFormContainer } from '../search';
 import { ModalWindow } from '../modal-window'
 
@@ -10,7 +10,7 @@ export const AllListsWrapper = ({taskLists, setTaskLists}) => {
       type: ''
    });
    let [searchResults, setSearchResults] = useState({});
-   let [showHomePage, setShowHomePage] = useState(true);
+   let [showSearchResults, setShowSearchResults] = useState(false);
    const [showModalWindow, setShowModalWindow] = useState(false);
 
    const addCard = (listName, newCard) => {
@@ -115,9 +115,9 @@ export const AllListsWrapper = ({taskLists, setTaskLists}) => {
       <>
          <SearchFormContainer 
             taskLists = {taskLists} 
-            showHomePage = {showHomePage}
+            showSearchResults  = {showSearchResults}
             setSearchResults = {setSearchResults}
-            setShowHomePage = {setShowHomePage}
+            setShowSearchResults = {setShowSearchResults}
             setShowModalWindow = {setShowModalWindow} />
          {
                showModalWindow 
@@ -127,25 +127,14 @@ export const AllListsWrapper = ({taskLists, setTaskLists}) => {
                   addCard = {addCard} />
             : null
          }
-         {
-               showHomePage
-            ? <HomePage
-                  taskLists = {taskLists}
-                  addCard = {addCard}
-                  removeCard = {removeCard} 
-                  editCard = {editCard} 
-                  moveCard = {moveCard} 
-                  setCurrentTask = {setCurrentTask}
-               />
-            : <SearchPage
-                  taskLists = {searchResults}
-                  addCard = {addCard}
-                  removeCard = {removeCard} 
-                  editCard = {editCard} 
-                  moveCard = {moveCard} 
-                  setCurrentTask = {setCurrentTask}
-               />
-         }
+         <HomePage
+            taskLists = {!showSearchResults  ? taskLists : searchResults}
+            addCard = {addCard}
+            removeCard = {removeCard} 
+            editCard = {editCard} 
+            moveCard = {moveCard} 
+            setCurrentTask = {setCurrentTask}
+         />
       </>
    );
 }
