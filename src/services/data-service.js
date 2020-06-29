@@ -19,7 +19,7 @@ export class DataService {
       const response = await fetch(`${this.url}/latest`);
       
       if(!response.ok) {
-         return new Error(`Could not connect with server, error ${response.status}`)
+         return new Error(response.status);
       }
 
       return await response.json();

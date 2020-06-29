@@ -10,25 +10,26 @@ export const SearchPage = ({ taskLists, addCard, removeCard, editCard, moveCard,
          listsKeys.map((listName, index) => {
             return (
                <ListContainer
-               moveCard = {moveCard}
-               header = {listName} 
-               key = {index} >
+                  cardNumber = {taskLists[listName].length}
+                  moveCard = {moveCard}
+                  header = {listName} 
+                  key = {index}>
                {
                   taskLists[listName].map((card, index) => {
                      return (
                      <SingleCard key = {index}
-                           card = {card}
-                           listName = {listName}
-                           setCurrentTask = {setCurrentTask}
-                           editCard = {editCard}
-                           removeCard = {removeCard} />
+                        card = {card}
+                        listName = {listName}
+                        setCurrentTask = {setCurrentTask}
+                        editCard = {editCard}
+                        removeCard = {removeCard} />
                      )
                   })
                }
-                     <NewCardForm 
-                        list = {taskLists[listName]}
-                        addCard = {addCard} 
-                        listName = {listName} />
+                  <NewCardForm 
+                     list = {taskLists[listName]}
+                     addCard = {addCard} 
+                     listName = {listName} />
                </ListContainer>
             )
          })

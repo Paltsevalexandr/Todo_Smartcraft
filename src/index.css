@@ -4,6 +4,9 @@
   box-sizing: border-box;
   outline: none;
 }
+button {
+  border: none;
+}
 button:hover {
   cursor: pointer;
 }
@@ -20,9 +23,6 @@ textarea {
 textarea {
   max-width: 250px;
 }
-button {
-  border: none;
-}
 .app {
   display: flex;
   flex-direction: column;
@@ -34,13 +34,19 @@ button {
 }
 .listsWrapper {
   display: flex;
-  height: 100%;
 }
 .listsWrapper .listContainer {
   display: flex;
   flex-direction: column;
   width: 20%;
   padding: 10px;
+}
+.listsWrapper .listContainer .listTitle {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  font-size: 20px;
+  font-weight: 200;
 }
 .listsWrapper .Backlog {
   background-color: #8b8b8b;

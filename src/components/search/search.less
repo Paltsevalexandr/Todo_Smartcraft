@@ -10,32 +10,53 @@
       padding: 3px;
    }
    .clearFilterBtn {
-      border: 1px rgb(230, 225, 225) solid;
+      padding-left: 30px;
+      background: rgb(214, 233, 245) url('../../assets/images/left-arrow.png') no-repeat left center;
+      background-size: 30px;
+      border: 2px rgb(56, 116, 196) solid;
       border-radius: 5px;
+      font-size: 16px;
    }
-   .searchMessage {
+   .searchTitle {
       margin: 0 auto 0 20px;
       color: black;
       line-height: 25px;
    }
-   .searchForm {
+   .searchFormWrap {
       display: flex;
+      align-items: flex-start;
       margin-left: auto;
-      .searchBtn {
+      .infoMessage {
+         height: 20px;
+         color: red;
+         font-size: 16px;
+      }
+      .showModalWindowBtn {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         padding: 0;
          width: 25px;
          height: 25px;
-         margin-right: 5px;
-         background-image: url('../../assets/images/search.png');
-         background-size: cover;
          background-color: transparent;
-         &:hover {
-            background-color: rgb(230, 225, 225);
-         }
+         font-size: 30px;
+         color: rgb(56, 116, 196);
       }
-      input {
-         height: 25px;
-         font-size: 18px;
-         border-color: rgb(115, 166, 223);
+      .searchForm {
+         display: flex;
+         .searchBtn {
+            width: 25px;
+            height: 25px;
+            margin-right: 5px;
+            background-image: url('../../assets/images/search.png');
+            background-size: cover;
+            background-color: transparent;
+         }
+         input {
+            height: 25px;
+            font-size: 18px;
+            border-color: rgb(115, 166, 223);
+         }
       }
    }
 }

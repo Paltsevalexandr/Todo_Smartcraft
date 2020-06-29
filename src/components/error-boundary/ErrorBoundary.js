@@ -1,10 +1,11 @@
 import React from 'react';
 
-export const Error = () => {
+export const ErrorBoundary = ({status}) => {
+
    return (
       <div>
          <span>
-            You get an error
+            You get an error {status}
          </span>
       </div>
    )

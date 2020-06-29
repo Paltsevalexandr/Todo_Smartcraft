@@ -1,0 +1,63 @@
+.modalWindow {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(50, 50, 50, 0.6);
+}
+.modalWindow:hover {
+  cursor: pointer;
+}
+.modalWindow .closeBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 25% 0;
+  width: 50px;
+  height: 50px;
+  background-image: url('../../assets/images/close.png');
+  background-color: transparent;
+  background-size: cover;
+}
+.modalWindow .formWrap {
+  width: 30%;
+  margin: 2% auto 0;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+.modalWindow .formWrap:hover {
+  cursor: auto;
+}
+.modalWindow .formWrap h2 {
+  padding-top: 10px;
+  text-align: center;
+  color: black;
+}
+.modalWindow .formWrap .cardForm {
+  padding-left: 15px;
+}
+.modalWindow .formWrap .cardForm h3 {
+  padding-left: 15px;
+}
+.modalWindow .formWrap .cardForm .radiobuttonsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90%;
+}
+.modalWindow .formWrap .cardForm .radiobuttonsWrap span {
+  margin: 5px 5px 0;
+  width: 100px;
+}
+.modalWindow .formWrap .cardForm .radiobuttonsWrap span input {
+  margin-right: 3px;
+}
+.modalWindow .formWrap .cardForm .titleInput {
+  width: 90%;
+  margin-top: 5px;
+}
+.modalWindow .formWrap .cardForm .textInput {
+  width: 95%;
+  max-width: 95%;
+}

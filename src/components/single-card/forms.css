@@ -50,19 +50,19 @@
   border: solid 1px grey;
 }
 .cardForm .checkboxWrap {
-  padding: 2px 0;
+  margin-top: 5px;
 }
 .cardForm .checkboxWrap p {
-  margin: 0 0 2px;
+  margin: 0 0 2px 5px;
+}
+.cardForm .checkboxWrap p .checkbox {
+  margin-right: 5px;
 }
 .cardForm .textInput {
   margin: 5px 0;
   height: 50px;
   font-size: 18px;
   border: solid 1px #a5a3a3;
-}
-.cardForm .checkbox {
-  margin-right: 5px;
 }
 .cardForm .newCardBtn {
   width: 120px;

@@ -4,8 +4,11 @@
    box-sizing: border-box;
    outline: none;
 }
-button:hover {
-   cursor: pointer;
+button {
+   border: none;
+   &:hover {
+      cursor: pointer;
+   }
 }
 h2 {
    color: whitesmoke;
@@ -19,9 +22,7 @@ input, textarea {
 textarea {
    max-width: 250px;
 }
-button {
-   border: none;
-}
+
 .app {
    display: flex;
    flex-direction: column;
@@ -33,14 +34,18 @@ button {
 }
 .listsWrapper {
    display: flex;
-   height: 100%;
    .listContainer {
       display: flex;
       flex-direction: column;
       width: 20%;
       padding: 10px;
-
-      
+      .listTitle {
+         display: flex;
+         justify-content: space-between;
+         padding: 0 15px;
+         font-size: 20px;
+         font-weight: 200;
+      }
    }
    .Backlog {
       background-color: rgb(139, 139, 139);

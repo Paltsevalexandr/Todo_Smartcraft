@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Checkboxes } from './Checkboxes';
 
-export const NewCardForm = ({ list, addCard, listName }) => {
+export const NewCardForm = ({ list, addCard, listName, children, setShowModalWindow }) => {
 
    let [showForm, setShowForm] = useState(false);
    let [title, setTitle] = useState('');
@@ -32,6 +32,7 @@ export const NewCardForm = ({ list, addCard, listName }) => {
          });
       setShowForm(false);
       clearForm();
+      if(setShowModalWindow) setShowModalWindow(false);
       e.preventDefault();
    }
 
@@ -52,29 +53,34 @@ export const NewCardForm = ({ list, addCard, listName }) => {
       setLabels([]);
    }
 
-   if(!showForm) {
+   if(!showForm && !setShowModalWindow) {
       return (
          <li className = 'singleCard addCardWrap'>
             <button className = 'addCardBtn' 
                onClick = {() => {
                   setShowForm(true);
-                  clearForm()
+                  clearForm();
                }}>
                   +
             </button>
          </li>
       )
-   }   
+   }
+
+   const closeBtn =  <button 
+                        className = 'closeBtn'
+                        onClick = {() => setShowForm(false)}>
+                           &#xD7;
+                     </button>;
+
+   const renderCloseBtn = children ? null : closeBtn;
 
    return (
       <li className = 'singleCard addCardWrap'>
-         <button 
-            className = 'closeBtn'
-            onClick = {() => setShowForm(false)}>
-            	&#xD7;
-         </button>
+         {renderCloseBtn}
          <form className = 'cardForm'
             onSubmit = {e => handleCard(e)}>
+            {children}
             <input type = 'text' required
                className = 'titleInput'
                value = {title}

@@ -1,41 +1,62 @@
 .searchWrap {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 5px;
-  padding: 10px 20px;
-  width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: flex-start;
+   margin: 5px;
+   padding: 10px 20px;
+   width: 100%;
 }
 .searchWrap button {
-  padding: 3px;
+   padding: 3px;
 }
 .searchWrap .clearFilterBtn {
-  border: 1px #e6e1e1 solid;
-  border-radius: 5px;
+   padding-left: 30px;
+   background: #d6e9f5 url('../../assets/images/left-arrow.png') no-repeat left center;
+   background-size: 30px;
+   border: 2px #3874c4 solid;
+   border-radius: 5px;
+   font-size: 16px;
 }
-.searchWrap .searchMessage {
-  margin: 0 auto 0 20px;
-  color: black;
-  line-height: 25px;
+.searchWrap .searchTitle {
+   margin: 0 auto 0 20px;
+   color: black;
+   line-height: 25px;
 }
-.searchWrap .searchForm {
-  display: flex;
-  margin-left: auto;
+.searchWrap .searchFormWrap {
+   display: flex;
+   align-items: flex-start;
+   margin-left: auto;
 }
-.searchWrap .searchForm .searchBtn {
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-  background-image: url('../../assets/images/search.png');
-  background-size: cover;
-  background-color: transparent;
+.searchWrap .searchFormWrap .infoMessage {
+   height: 20px;
+   color: red;
+   font-size: 16px;
 }
-.searchWrap .searchForm .searchBtn:hover {
-  background-color: #e6e1e1;
+.searchWrap .searchFormWrap .showModalWindowBtn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 0;
+   width: 25px;
+   height: 25px;
+   background-color: transparent;
+   font-size: 30px;
+   color: #3874c4;
 }
-.searchWrap .searchForm input {
-  height: 25px;
-  font-size: 18px;
-  border-color: #73a6df;
+.searchWrap .searchFormWrap .searchForm {
+   display: flex;
+}
+.searchWrap .searchFormWrap .searchForm .searchBtn {
+   width: 25px;
+   height: 25px;
+   margin-right: 5px;
+   background-image: url('../../assets/images/search.png');
+   background-size: cover;
+   background-color: transparent;
+}
+.searchWrap .searchFormWrap .searchForm input {
+   height: 25px;
+   font-size: 18px;
+   border-color: #73a6df;
 }
